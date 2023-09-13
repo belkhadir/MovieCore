@@ -14,7 +14,8 @@ final public class MovieMapper {
     }
     
     static func map(json: Data, httpResponse: HTTPURLResponse) throws {
-        if httpResponse.statusCode != 200 {
+        guard let _ = try JSONSerialization.jsonObject(with: json, options: []) as? [String: Any],
+              httpResponse.statusCode == 200 else {
             throw Error.invalidData
         }
     }
@@ -22,7 +23,6 @@ final public class MovieMapper {
 
 
 final class MovieMapperTests: XCTestCase {
-
     func testGivenNon200HTTPResponses_WhenMappingJSON_ThenThrowsError() throws {
         let json = [String: Any]()
         let jsonData = try! JSONSerialization.data(withJSONObject: json)
@@ -33,5 +33,13 @@ final class MovieMapperTests: XCTestCase {
             let httpResponse = HTTPURLResponse(url: anyURL, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
             XCTAssertThrowsError(try MovieMapper.map(json: jsonData, httpResponse: httpResponse))
         }
+    }
+    
+    func testGivenInvalidJSONWith200HTTPResponse_WhenMapping_ThenThrowsError() throws {
+        let invalidData = Data("invalid json".utf8)
+        let anyURL = URL(string: "http://anyURL.com")!
+        let httpResponse = HTTPURLResponse(url: anyURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        
+        XCTAssertThrowsError(try MovieMapper.map(json: invalidData, httpResponse: httpResponse))
     }
 }

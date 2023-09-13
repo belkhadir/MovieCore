@@ -27,29 +27,33 @@ final class MovieMapperTests: XCTestCase {
         let json = [String: Any]()
         let jsonData = try! JSONSerialization.data(withJSONObject: json)
         
-        let anyURL = URL(string: "http://anyURL.com")!
-        let sample = [199, 201, 299, 400]
-        try sample.forEach { statusCode in
-            let httpResponse = HTTPURLResponse(url: anyURL, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-            XCTAssertThrowsError(try MovieMapper.map(json: jsonData, httpResponse: httpResponse))
-        }
+        try assertThatThrows(json: jsonData, statusCodes: [199, 201, 299, 400])
     }
     
-    func testGivenInvalidJSON_And_200HTTPResponse_WhenMapping_ThenThrowsError() {
+    func testGivenInvalidJSON_And_200HTTPResponse_WhenMapping_ThenThrowsError() throws {
         let invalidData = Data("invalid json".utf8)
-        let anyURL = URL(string: "http://anyURL.com")!
-        let httpResponse = HTTPURLResponse(url: anyURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
         
-        XCTAssertThrowsError(try MovieMapper.map(json: invalidData, httpResponse: httpResponse))
+        try assertThatThrows(json: invalidData, statusCodes: [200])
     }
     
     func testGivenInvalidJSON_And_Non200HTTPResponse_WhenMappingJSON_ThenThrowsError() throws {
         let invalidData = Data("invalid json".utf8)
-        let anyURL = URL(string: "http://anyURL.com")!
-        let sample = [199, 201, 299, 400]
-        try sample.forEach { statusCode in
-            let httpResponse = HTTPURLResponse(url: anyURL, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-            XCTAssertThrowsError(try MovieMapper.map(json: invalidData, httpResponse: httpResponse))
+        
+        try assertThatThrows(json: invalidData, statusCodes: [199, 201, 299, 400])
+    }
+}
+
+
+// MARK: - Helpers
+private extension MovieMapperTests {
+    func assertThatThrows(json: Data, statusCodes: [Int], file: StaticString = #file, line: UInt = #line) throws {
+        try statusCodes.forEach { statusCode in
+            XCTAssertThrowsError(
+                try MovieMapper.map(json: json, httpResponse: HTTPURLResponse(statusCode: statusCode)),
+                "Expected to throw error",
+                file: file,
+                line: line
+            )
         }
     }
 }

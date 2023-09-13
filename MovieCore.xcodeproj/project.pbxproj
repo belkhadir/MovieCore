@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4913EB572AB240FA001E9C79 /* MovieMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */; };
+		4913EB5A2AB24973001E9C79 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB592AB24973001E9C79 /* SharedTestHelpers.swift */; };
 		49DDCE562AAB75B80001F3F3 /* MovieCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DDCE4D2AAB75B80001F3F3 /* MovieCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMapperTests.swift; sourceTree = "<group>"; };
+		4913EB592AB24973001E9C79 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		49DDCE4D2AAB75B80001F3F3 /* MovieCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovieCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DDCE552AAB75B80001F3F3 /* MovieCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -46,6 +48,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4913EB582AB24963001E9C79 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4913EB592AB24973001E9C79 /* SharedTestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		49DDCE432AAB75B80001F3F3 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 		49DDCE592AAB75B80001F3F3 /* MovieCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				4913EB582AB24963001E9C79 /* Helpers */,
 				4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */,
 			);
 			path = MovieCoreTests;
@@ -196,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4913EB5A2AB24973001E9C79 /* SharedTestHelpers.swift in Sources */,
 				4913EB572AB240FA001E9C79 /* MovieMapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -35,11 +35,21 @@ final class MovieMapperTests: XCTestCase {
         }
     }
     
-    func testGivenInvalidJSONWith200HTTPResponse_WhenMapping_ThenThrowsError() throws {
+    func testGivenInvalidJSON_And_200HTTPResponse_WhenMapping_ThenThrowsError() {
         let invalidData = Data("invalid json".utf8)
         let anyURL = URL(string: "http://anyURL.com")!
         let httpResponse = HTTPURLResponse(url: anyURL, statusCode: 200, httpVersion: nil, headerFields: nil)!
         
         XCTAssertThrowsError(try MovieMapper.map(json: invalidData, httpResponse: httpResponse))
+    }
+    
+    func testGivenInvalidJSON_And_Non200HTTPResponse_WhenMappingJSON_ThenThrowsError() throws {
+        let invalidData = Data("invalid json".utf8)
+        let anyURL = URL(string: "http://anyURL.com")!
+        let sample = [199, 201, 299, 400]
+        try sample.forEach { statusCode in
+            let httpResponse = HTTPURLResponse(url: anyURL, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+            XCTAssertThrowsError(try MovieMapper.map(json: invalidData, httpResponse: httpResponse))
+        }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4913EB572AB240FA001E9C79 /* MovieMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */; };
 		49DDCE562AAB75B80001F3F3 /* MovieCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DDCE4D2AAB75B80001F3F3 /* MovieCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,6 +22,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMapperTests.swift; sourceTree = "<group>"; };
 		49DDCE4D2AAB75B80001F3F3 /* MovieCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovieCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DDCE552AAB75B80001F3F3 /* MovieCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 		49DDCE592AAB75B80001F3F3 /* MovieCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */,
 			);
 			path = MovieCoreTests;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 					};
 					49DDCE542AAB75B80001F3F3 = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -192,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4913EB572AB240FA001E9C79 /* MovieMapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +397,7 @@
 		49DDCE632AAB75B80001F3F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -399,6 +405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.learn.MovieCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -407,6 +414,7 @@
 		49DDCE642AAB75B80001F3F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

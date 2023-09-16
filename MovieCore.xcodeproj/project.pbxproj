@@ -68,6 +68,57 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		495889D22AB5FE5C0086B47B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4913EB7F2AB5EF00001E9C79 /* NetworkError.swift */,
+				4913EB7D2AB5EE9F001E9C79 /* Requestable.swift */,
+				4913EB812AB5EF2C001E9C79 /* RequestType.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		495889D32AB5FE790086B47B /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				495889D42AB5FE8D0086B47B /* Domain */,
+				495889D52AB5FE950086B47B /* API */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
+		495889D42AB5FE8D0086B47B /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				4913EB792AB5EB8C001E9C79 /* Movie.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		495889D52AB5FE950086B47B /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4913EB772AB5EB76001E9C79 /* MoviesMapper.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		495889D72AB5FEBA0086B47B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4913EB7B2AB5EE7B001E9C79 /* RequestableTest.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		495889D82AB5FEC70086B47B /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
 		49DDCE432AAB75B80001F3F3 = {
 			isa = PBXGroup;
 			children = (
@@ -89,11 +140,8 @@
 		49DDCE4F2AAB75B80001F3F3 /* MovieCore */ = {
 			isa = PBXGroup;
 			children = (
-				4913EB792AB5EB8C001E9C79 /* Movie.swift */,
-				4913EB772AB5EB76001E9C79 /* MoviesMapper.swift */,
-				4913EB7F2AB5EF00001E9C79 /* NetworkError.swift */,
-				4913EB7D2AB5EE9F001E9C79 /* Requestable.swift */,
-				4913EB812AB5EF2C001E9C79 /* RequestType.swift */,
+				495889D32AB5FE790086B47B /* Movie */,
+				495889D22AB5FE5C0086B47B /* Shared */,
 			);
 			path = MovieCore;
 			sourceTree = "<group>";
@@ -101,8 +149,8 @@
 		49DDCE592AAB75B80001F3F3 /* MovieCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */,
-				4913EB7B2AB5EE7B001E9C79 /* RequestableTest.swift */,
+				495889D82AB5FEC70086B47B /* Movie */,
+				495889D72AB5FEBA0086B47B /* Shared */,
 				4913EB582AB24963001E9C79 /* Helpers */,
 			);
 			path = MovieCoreTests;

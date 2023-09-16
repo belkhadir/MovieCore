@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4913EB572AB240FA001E9C79 /* MovieMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */; };
 		4913EB5A2AB24973001E9C79 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB592AB24973001E9C79 /* SharedTestHelpers.swift */; };
+		4913EB782AB5EB76001E9C79 /* MoviesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB772AB5EB76001E9C79 /* MoviesMapper.swift */; };
+		4913EB7A2AB5EB8C001E9C79 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB792AB5EB8C001E9C79 /* Movie.swift */; };
 		49DDCE562AAB75B80001F3F3 /* MovieCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DDCE4D2AAB75B80001F3F3 /* MovieCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		4913EB562AB240FA001E9C79 /* MovieMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMapperTests.swift; sourceTree = "<group>"; };
 		4913EB592AB24973001E9C79 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		4913EB772AB5EB76001E9C79 /* MoviesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesMapper.swift; sourceTree = "<group>"; };
+		4913EB792AB5EB8C001E9C79 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		49DDCE4D2AAB75B80001F3F3 /* MovieCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovieCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DDCE552AAB75B80001F3F3 /* MovieCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -77,6 +81,8 @@
 		49DDCE4F2AAB75B80001F3F3 /* MovieCore */ = {
 			isa = PBXGroup;
 			children = (
+				4913EB772AB5EB76001E9C79 /* MoviesMapper.swift */,
+				4913EB792AB5EB8C001E9C79 /* Movie.swift */,
 			);
 			path = MovieCore;
 			sourceTree = "<group>";
@@ -200,6 +206,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4913EB7A2AB5EB8C001E9C79 /* Movie.swift in Sources */,
+				4913EB782AB5EB76001E9C79 /* MoviesMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +417,7 @@
 		49DDCE632AAB75B80001F3F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -426,6 +435,7 @@
 		49DDCE642AAB75B80001F3F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

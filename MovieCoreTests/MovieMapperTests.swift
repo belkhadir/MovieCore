@@ -32,7 +32,7 @@ final class MovieMapperTests: XCTestCase {
         let item1 = makeItem(
             id: 0,
             title: "title",
-            releaseDate: (Date.fromUTCString("2020-08-28")!, "2020-08-28"),
+            releaseDate: (Date.fromDateString("2020-08-28")!, "2020-08-28"),
             imagePath: "/poster/path.png",
             overview: "descrption",
             voteAverage: 1,
@@ -42,7 +42,7 @@ final class MovieMapperTests: XCTestCase {
         let item2 = makeItem(
             id: 1,
             title: "another title",
-            releaseDate: (Date.fromUTCString("2020-08-28")!, "2020-08-28"),
+            releaseDate: (Date.fromDateString("2020-08-28")!, "2020-08-28"),
             imagePath: "/poster/another_path.png",
             overview: "another descrption",
             voteAverage: 2,

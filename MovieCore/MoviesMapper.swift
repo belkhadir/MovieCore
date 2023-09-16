@@ -46,11 +46,16 @@ final public class MoviesMapper {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         
-        guard httpResponse.statusCode == 200,
-            let root = try? decoder.decode(Root.self, from: json) else {
+        guard httpResponse.isOK else {
             throw Error.invalidData
         }
         
-        return root.movies
+        return try decoder.decode(Root.self, from: json).movies
+    }
+}
+
+private extension HTTPURLResponse {
+    var isOK: Bool {
+        return statusCode == 200
     }
 }

@@ -13,6 +13,7 @@ public protocol Requestable {
     var httpBody: [String: Any] { get }
     var urlParameters: [String: String?] { get }
     var requestType: RequestType { get }
+    var bearerTokonize: String { get }
 }
 
 // MARK: - Default values, some request doesn't require `params`, `urlParams` and `headers`
@@ -32,10 +33,14 @@ public extension Requestable {
     var headers: [String: String] {
         [:]
     }
+    
+    var bearerTokonize: String {
+        "Insert token"
+    }
 }
 
 public extension Requestable {
-    func createURLRequest(bearerTokonize: String) throws -> URLRequest {
+    func createURLRequest() throws -> URLRequest {
         var components = URLComponents()
         components.scheme = "https"
         components.host = host

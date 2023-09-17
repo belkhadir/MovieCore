@@ -15,6 +15,7 @@ final class RequestableTest: XCTestCase {
         var httpBody: [String : Any] = ["key": "value"]
         var urlParameters: [String : String?] = ["param": "paramValue"]
         var requestType = RequestType.GET
+        var bearerTokonize: String = "sampleToken"
     }
     
     func testDefaultValues() {
@@ -27,13 +28,12 @@ final class RequestableTest: XCTestCase {
     
     func testCreateURLRequest() throws {
         let request = MockRequest()
-        let bearerToken = "sampleToken"
-        let urlRequest = try request.createURLRequest(bearerTokonize: bearerToken)
+        let urlRequest = try request.createURLRequest()
         
         XCTAssertEqual(urlRequest.httpMethod, "GET")
         XCTAssertEqual(urlRequest.url?.absoluteString, "https://api.themoviedb.org/test?param=paramValue")
         XCTAssertEqual(urlRequest.allHTTPHeaderFields?["headerField"], "headerValue")
-        XCTAssertEqual(urlRequest.allHTTPHeaderFields?["Authorization"], bearerToken)
+        XCTAssertEqual(urlRequest.allHTTPHeaderFields?["Authorization"], "sampleToken")
         
         let httpBody = try JSONSerialization.jsonObject(with: urlRequest.httpBody!, options: []) as? [String: String]
         XCTAssertEqual(httpBody, ["key": "value"])
@@ -46,7 +46,7 @@ final class RequestableTest: XCTestCase {
         }
         
         let request = InvalidRequest()
-        XCTAssertThrowsError(try request.createURLRequest(bearerTokonize: "token")) { error in
+        XCTAssertThrowsError(try request.createURLRequest()) { error in
             XCTAssertEqual(error as? NetworkError, NetworkError.invalidURL)
         }
     }

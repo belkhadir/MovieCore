@@ -15,6 +15,7 @@
 		4913EB7E2AB5EE9F001E9C79 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB7D2AB5EE9F001E9C79 /* Requestable.swift */; };
 		4913EB802AB5EF00001E9C79 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB7F2AB5EF00001E9C79 /* NetworkError.swift */; };
 		4913EB822AB5EF2C001E9C79 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913EB812AB5EF2C001E9C79 /* RequestType.swift */; };
+		495889DA2AB5FF9C0086B47B /* MovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495889D92AB5FF9C0086B47B /* MovieRequest.swift */; };
 		49DDCE562AAB75B80001F3F3 /* MovieCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DDCE4D2AAB75B80001F3F3 /* MovieCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		4913EB7D2AB5EE9F001E9C79 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
 		4913EB7F2AB5EF00001E9C79 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4913EB812AB5EF2C001E9C79 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		495889D92AB5FF9C0086B47B /* MovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequest.swift; sourceTree = "<group>"; };
 		49DDCE4D2AAB75B80001F3F3 /* MovieCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovieCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DDCE552AAB75B80001F3F3 /* MovieCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				4913EB772AB5EB76001E9C79 /* MoviesMapper.swift */,
+				495889D92AB5FF9C0086B47B /* MovieRequest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			files = (
 				4913EB7E2AB5EE9F001E9C79 /* Requestable.swift in Sources */,
 				4913EB802AB5EF00001E9C79 /* NetworkError.swift in Sources */,
+				495889DA2AB5FF9C0086B47B /* MovieRequest.swift in Sources */,
 				4913EB7A2AB5EB8C001E9C79 /* Movie.swift in Sources */,
 				4913EB782AB5EB76001E9C79 /* MoviesMapper.swift in Sources */,
 				4913EB822AB5EF2C001E9C79 /* RequestType.swift in Sources */,

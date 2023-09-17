@@ -9,15 +9,6 @@ import XCTest
 import MovieCore
 
 final class RequestableTest: XCTestCase {
-    struct MockRequest: Requestable {
-        var path = "/test"
-        var headers: [String : String] = ["headerField": "headerValue"]
-        var httpBody: [String : Any] = ["key": "value"]
-        var urlParameters: [String : String?] = ["param": "paramValue"]
-        var requestType = RequestType.GET
-        var bearerTokonize: String = "sampleToken"
-    }
-    
     func testDefaultValues() {
         let request = MockRequest()
         XCTAssertEqual(request.host, "api.themoviedb.org")

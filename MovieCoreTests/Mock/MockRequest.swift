@@ -7,7 +7,7 @@
 
 import MovieCore
 
-struct MockRequest: Requestable {
+struct MockRequest: Requestable, Equatable {
     var path = "/test"
     var headers: [String : String] = ["headerField": "headerValue"]
     var httpBody: [String : Any] = ["key": "value"]

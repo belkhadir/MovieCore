@@ -36,16 +36,65 @@ final class NetworkServiceProviderTests: XCTestCase {
     }
     
     func test_GivenStubbedError_WhenPerformingRequest_ThenReceivesCorrectError() {
-        let error = NSError(domain: "any error", code: 1)
+        let error = anyError()
         let receivedError = resultErrorFor(data: nil, response: nil, error: error) as? NSError
         
          
         XCTAssertEqual(receivedError?.domain, error.domain)
         XCTAssertEqual(receivedError?.code, error.code)
     }
-    
-    func testGivenAllValuesNil_WhenPerformingRequest_ThenFailOnallCases() {
+     
+    func testGivenVariousInvalidInputs_WhenPerformingRequest_ThenAlwaysReceiveError() {
         XCTAssertNotNil(resultErrorFor(data: nil, response: nil, error: nil))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: nonHTTPResponse() , error: nil))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: anyHTTPResponse(), error: nil))
+        XCTAssertNotNil(resultErrorFor(data: anyData(), response: anyHTTPResponse(), error: nil))
+        XCTAssertNotNil(resultErrorFor(data: anyData(), response: nil, error: anyError()))
+        XCTAssertNotNil(resultErrorFor(data: anyData(), response: nonHTTPResponse(), error: anyError()))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: anyHTTPResponse(), error: anyError()))
+        XCTAssertNotNil(resultErrorFor(data: anyData(), response: nonHTTPResponse (), error: anyError()))
+        XCTAssertNotNil(resultErrorFor(data: anyData(), response: anyHTTPResponse(), error: anyError()))
+        XCTAssertNotNil(resultErrorFor(data: anyData(), response: nonHTTPResponse(), error: nil))
+    }
+    
+    func testGivenValidHTTPResponse_And_data_WhenPerformingRequest_ThenSucceed() {
+        let data = anyData()
+        let response = anyHTTPResponse()
+        URLProtocolSub.stub(data: data , response: response, error: nil)
+        
+        let exp = expectation(description: "Wait for completion")
+        makeSUT().perform(request:  anyRequest()) { result in
+            switch result {
+            case let .success((receivedData, receivedHTTPResponse)):
+                XCTAssertEqual(receivedData, data)
+                XCTAssertEqual(receivedHTTPResponse.url, response.url)
+                XCTAssertEqual(receivedHTTPResponse.statusCode, response.statusCode )
+            default:
+                XCTFail("Expect result success but got result \(result)")
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func testGivenValidHTTPResponse_And_NilData_WhenPerformingRequest_ThenSucceed () {
+        let response = anyHTTPResponse()
+        URLProtocolSub.stub(data: nil , response: response, error: nil)
+        
+        let exp = expectation(description: "Wait for completion")
+        makeSUT().perform(request:  anyRequest()) { result in
+            switch result {
+            case let .success((receivedData, receivedHTTPResponse)):
+                let emptyData = Data()
+                XCTAssertEqual(receivedData, emptyData)
+                XCTAssertEqual(receivedHTTPResponse.url, response.url)
+                XCTAssertEqual(receivedHTTPResponse.statusCode, response.statusCode )
+            default:
+                XCTFail("Expect result success but got result \(result)")
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
 }
 
@@ -78,9 +127,23 @@ private extension NetworkServiceProviderTests {
     }
     
     func anyRequest() -> URLRequest {
-        let anyURL = URL(string: "https://any-url.com")!
-        let request = URLRequest(url: anyURL)
-        return request
+        URLRequest(url: anyURL())
+    }
+    
+    func nonHTTPResponse() -> URLResponse {
+        URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
+    }
+    
+    func anyHTTPResponse() -> HTTPURLResponse {
+        HTTPURLResponse(statusCode: 200)
+    }
+    
+    func anyData() -> Data {
+        Data("any data".utf8)
+    }
+    
+    func anyError() -> NSError {
+        NSError(domain: "any error", code: 1)
     }
     
     class URLProtocolSub: URLProtocol {

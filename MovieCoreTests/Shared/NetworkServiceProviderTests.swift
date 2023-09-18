@@ -24,9 +24,7 @@ final class NetworkServiceProviderTests: XCTestCase {
         let anyURL = URL(string: "https://any-url.com")!
         let request = URLRequest(url: anyURL)
         let error = NSError(domain: "any error", code: 1)
-        URLProtocolSub.stub(data: nil, response: nil, error: error)
-        
-        let sut = NetworkServiceProvider()
+        URLProtocolSub.stub(data: nil, response: nil, error: error) 
         
         let exp = expectation(description: "wait for completion")
          
@@ -67,13 +65,6 @@ private extension NetworkServiceProviderTests {
         let sut = NetworkServiceProvider()
         trackForMemoryLeaks(sut, file: file, line: line )
         return sut
-    }
-    
-    private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file,
-                         line: line)
-        }
     }
     
     class URLProtocolSub: URLProtocol {

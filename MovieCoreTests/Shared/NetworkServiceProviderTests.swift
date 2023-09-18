@@ -63,8 +63,17 @@ final class NetworkServiceProviderTests: XCTestCase {
 
 // MARK: - Helpers
 private extension NetworkServiceProviderTests {
-    func makeSUT() -> NetworkServiceProviding {
-        return NetworkServiceProvider()
+    func makeSUT(file: StaticString = #file, line: UInt = #line) -> NetworkServiceProviding {
+        let sut = NetworkServiceProvider()
+        trackForMemoryLeaks(sut, file: file, line: line )
+        return sut
+    }
+    
+    private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file,
+                         line: line)
+        }
     }
     
     class URLProtocolSub: URLProtocol {

@@ -91,7 +91,6 @@ private extension NetworkServiceProviderTests {
     
     func resultValuesFor(data: Data?, response: URLResponse?, error: Error?, file: StaticString = #file, line: UInt = #line) ->  (data: Data, response: HTTPURLResponse)? {
         let result = resultFor(data: data, response: response, error: error, file: file, line: line)
-        let sut = makeSUT(file: file, line: line  )
         
         switch result {
             case let .success((data, response)):

@@ -48,12 +48,12 @@ final class NetworkServiceProviderTests: XCTestCase {
      
     func testGivenVariousInvalidInputs_WhenPerformingRequest_ThenAlwaysReceiveError() {
         XCTAssertNotNil(resultErrorFor(data: nil, response: nil, error: nil))
-        XCTAssertNotNil(resultErrorFor(data: nil, response: nonHTTPResponse() , error: nil))
-        XCTAssertNotNil(resultErrorFor(data: anyData(), response: anyHTTPResponse(), error: nil))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: nonHTTPResponse(), error: nil))
+        XCTAssertNotNil(resultErrorFor(data: anyData(), response: nil, error: nil))
         XCTAssertNotNil(resultErrorFor(data: anyData(), response: nil, error: anyError()))
-        XCTAssertNotNil(resultErrorFor(data: anyData(), response: nonHTTPResponse(), error: anyError()))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: nonHTTPResponse(), error: anyError()))
         XCTAssertNotNil(resultErrorFor(data: nil, response: anyHTTPResponse(), error: anyError()))
-        XCTAssertNotNil(resultErrorFor(data: anyData(), response: nonHTTPResponse (), error: anyError()))
+        XCTAssertNotNil(resultErrorFor(data: anyData(), response: nonHTTPResponse(), error: anyError()))
         XCTAssertNotNil(resultErrorFor(data: anyData(), response: anyHTTPResponse(), error: anyError()))
         XCTAssertNotNil(resultErrorFor(data: anyData(), response: nonHTTPResponse(), error: nil))
     }

@@ -17,5 +17,5 @@ public protocol NetworkServiceProviding {
     /// The completion handler can be invoked in any thread.
     /// Clients are responsible to dispatch to appropriate threads, if needed.
     @discardableResult
-    func perform(request: URLRequest, completion: @escaping (Result) -> Void) throws -> NetworkServiceTask
+    func perform(request: URLRequest, completion: @escaping (Result) -> Void) -> NetworkServiceTask
 }

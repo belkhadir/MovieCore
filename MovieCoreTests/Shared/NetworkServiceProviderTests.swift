@@ -10,8 +10,17 @@ import MovieCore
 
 final class NetworkServiceProviderTests: XCTestCase {
 
-    func test_GivenStubbedError_WhenPerformingRequest_ThenReceivesCorrectError() {
+    override func setUp() {
+        super.setUp()
         URLProtocolSub.startInterceptingRequests()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        URLProtocolSub.stopInterceptingRequest()
+    }
+    
+    func test_GivenStubbedError_WhenPerformingRequest_ThenReceivesCorrectError() {
         let anyURL = URL(string: "https://any-url.com")!
         let request = URLRequest(url: anyURL)
         let error = NSError(domain: "any error", code: 1)
@@ -21,7 +30,7 @@ final class NetworkServiceProviderTests: XCTestCase {
         
         let exp = expectation(description: "wait for completion")
          
-        _ = sut.perform(request: request) { result in
+        _ = makeSUT().perform(request: request) { result in
             switch result {
             case let .failure(receivedError as NSError):
                 XCTAssertEqual(receivedError.domain, error.domain)
@@ -33,11 +42,9 @@ final class NetworkServiceProviderTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
-        URLProtocolSub.stopInterceptingRequest()
     }
 
     func testGivenAnyURLRequest_WhenPerformingRequest_ThenCorrectRequestIsReceivedByURLProtocol() {
-        URLProtocolSub.startInterceptingRequests()
         let anyURL = URL(string: "https://any-url.com")!
         let  request = URLRequest(url: anyURL)
         
@@ -48,15 +55,18 @@ final class NetworkServiceProviderTests: XCTestCase {
             exp.fulfill()
         }
         
-        _ = NetworkServiceProvider().perform(request: request) { _ in }
+        _ = makeSUT().perform(request: request) { _ in }
         
         wait(for: [exp], timeout: 1.0)
-        URLProtocolSub.stopInterceptingRequest()
     }
 }
 
 // MARK: - Helpers
 private extension NetworkServiceProviderTests {
+    func makeSUT() -> NetworkServiceProviding {
+        return NetworkServiceProvider()
+    }
+    
     class URLProtocolSub: URLProtocol {
         private static var stub: Stub?
         private static var requestObserver: ((URLRequest) -> Void)?

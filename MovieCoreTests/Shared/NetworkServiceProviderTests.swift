@@ -21,14 +21,12 @@ final class NetworkServiceProviderTests: XCTestCase {
     }
     
     func test_GivenStubbedError_WhenPerformingRequest_ThenReceivesCorrectError() {
-        let anyURL = URL(string: "https://any-url.com")!
-        let request = URLRequest(url: anyURL)
         let error = NSError(domain: "any error", code: 1)
-        URLProtocolSub.stub(data: nil, response: nil, error: error) 
+        URLProtocolSub.stub(data: nil, response: nil, error: error)
         
         let exp = expectation(description: "wait for completion")
          
-        _ = makeSUT().perform(request: request) { result in
+        _ = makeSUT().perform(request: anyRequest()) { result in
             switch result {
             case let .failure(receivedError as NSError):
                 XCTAssertEqual(receivedError.domain, error.domain)
@@ -43,17 +41,16 @@ final class NetworkServiceProviderTests: XCTestCase {
     }
 
     func testGivenAnyURLRequest_WhenPerformingRequest_ThenCorrectRequestIsReceivedByURLProtocol() {
-        let anyURL = URL(string: "https://any-url.com")!
-        let  request = URLRequest(url: anyURL)
-        
         let exp = expectation(description: "Wait for the request")
+        let anyRequest = anyRequest()
+        
         URLProtocolSub.observeRequests { receivedRequest in
-            XCTAssertEqual(receivedRequest.url, request.url)
-            XCTAssertEqual(receivedRequest.httpMethod, request.httpMethod)
+            XCTAssertEqual(receivedRequest.url, anyRequest.url)
+            XCTAssertEqual(receivedRequest.httpMethod, anyRequest.httpMethod)
             exp.fulfill()
         }
         
-        _ = makeSUT().perform(request: request) { _ in }
+        _ = makeSUT().perform(request: anyRequest ) { _ in }
         
         wait(for: [exp], timeout: 1.0)
     }
@@ -65,6 +62,12 @@ private extension NetworkServiceProviderTests {
         let sut = NetworkServiceProvider()
         trackForMemoryLeaks(sut, file: file, line: line )
         return sut
+    }
+    
+    func anyRequest() -> URLRequest {
+        let anyURL = URL(string: "https://any-url.com")!
+        let request = URLRequest(url: anyURL)
+        return request
     }
     
     class URLProtocolSub: URLProtocol {

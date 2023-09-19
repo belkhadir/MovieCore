@@ -25,6 +25,8 @@
 		491748982ABA22D000D482E3 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C89C252AB8A75C0087CE01 /* XCTestCase+MemoryLeakTracking.swift */; };
 		4917489A2ABA22EC00D482E3 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491748992ABA22EC00D482E3 /* XCTestCase+MemoryLeakTracking.swift */; };
 		492613662ABA3E710053B325 /* ResourceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917485A2AB9C8A000D482E3 /* ResourceProviding.swift */; };
+		492613682ABA441E0053B325 /* LoadResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492613672ABA441E0053B325 /* LoadResourceView.swift */; };
+		4926136A2ABA442E0053B325 /* GenericAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492613692ABA442E0053B325 /* GenericAlertView.swift */; };
 		495889DA2AB5FF9C0086B47B /* MovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495889D92AB5FF9C0086B47B /* MovieRequest.swift */; };
 		495889E62AB735660086B47B /* NetworkServiceProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495889E52AB735660086B47B /* NetworkServiceProviding.swift */; };
 		495889E92AB738380086B47B /* MockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495889E82AB738380086B47B /* MockRequest.swift */; };
@@ -88,6 +90,8 @@
 		491748912ABA146100D482E3 /* ResourceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewModelTests.swift; sourceTree = "<group>"; };
 		491748942ABA16D800D482E3 /* MockResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResourceProvider.swift; sourceTree = "<group>"; };
 		491748992ABA22EC00D482E3 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XCTestCase+MemoryLeakTracking.swift"; path = "MovieCoreTests/Helpers/XCTestCase+MemoryLeakTracking.swift"; sourceTree = SOURCE_ROOT; };
+		492613672ABA441E0053B325 /* LoadResourceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadResourceView.swift; sourceTree = "<group>"; };
+		492613692ABA442E0053B325 /* GenericAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericAlertView.swift; sourceTree = "<group>"; };
 		495889D92AB5FF9C0086B47B /* MovieRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRequest.swift; sourceTree = "<group>"; };
 		495889E52AB735660086B47B /* NetworkServiceProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProviding.swift; sourceTree = "<group>"; };
 		495889E82AB738380086B47B /* MockRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequest.swift; sourceTree = "<group>"; };
@@ -171,8 +175,9 @@
 			isa = PBXGroup;
 			children = (
 				4917485A2AB9C8A000D482E3 /* ResourceProviding.swift */,
-				491748772AB9CC0100D482E3 /* ResourceViewModel.swift */,
 				491748852AB9EB7000D482E3 /* ResourceState.swift */,
+				4926136C2ABA448B0053B325 /* View */,
+				4926136D2ABA44950053B325 /* ViewModel */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -199,6 +204,23 @@
 				491748992ABA22EC00D482E3 /* XCTestCase+MemoryLeakTracking.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4926136C2ABA448B0053B325 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				492613692ABA442E0053B325 /* GenericAlertView.swift */,
+				492613672ABA441E0053B325 /* LoadResourceView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4926136D2ABA44950053B325 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				491748772AB9CC0100D482E3 /* ResourceViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		495889D22AB5FE5C0086B47B /* Shared */ = {
@@ -510,7 +532,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				492613682ABA441E0053B325 /* LoadResourceView.swift in Sources */,
 				492613662ABA3E710053B325 /* ResourceProviding.swift in Sources */,
+				4926136A2ABA442E0053B325 /* GenericAlertView.swift in Sources */,
 				491748862AB9EB7000D482E3 /* ResourceState.swift in Sources */,
 				491748782AB9CC0100D482E3 /* ResourceViewModel.swift in Sources */,
 			);

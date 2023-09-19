@@ -5,7 +5,6 @@
 //  Created by Belkhadir Anas on 19/9/2023.
 //
 
-import MovieCore
 import SwiftUI
 
 protocol ResourceLoadable {

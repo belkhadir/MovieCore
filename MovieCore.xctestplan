@@ -1,0 +1,35 @@
+{
+  "configurations" : [
+    {
+      "id" : "AA683821-B075-4CBF-82D3-D2BA5FBD1D4D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:MovieCore.xcodeproj",
+          "identifier" : "49DDCE4C2AAB75B80001F3F3",
+          "name" : "MovieCore"
+        }
+      ]
+    },
+    "testExecutionOrdering" : "random",
+    "testRepetitionMode" : "retryOnFailure"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MovieCore.xcodeproj",
+        "identifier" : "49DDCE542AAB75B80001F3F3",
+        "name" : "MovieCoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}

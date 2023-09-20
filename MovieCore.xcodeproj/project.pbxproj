@@ -82,13 +82,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		491748792AB9CC1300D482E3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		495889D22AB5FE5C0086B47B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +175,6 @@
 				49DDCE4F2AAB75B80001F3F3 /* MovieCore */,
 				49DDCE592AAB75B80001F3F3 /* MovieCoreTests */,
 				49DDCE4E2AAB75B80001F3F3 /* Products */,
-				491748792AB9CC1300D482E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

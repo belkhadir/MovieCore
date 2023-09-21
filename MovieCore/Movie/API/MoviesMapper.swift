@@ -53,9 +53,3 @@ final public class MoviesMapper {
         return try decoder.decode(Root.self, from: json).movies
     }
 }
-
-private extension HTTPURLResponse {
-    var isOK: Bool {
-        return statusCode == 200
-    }
-}

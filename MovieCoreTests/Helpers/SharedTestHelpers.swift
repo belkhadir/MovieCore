@@ -11,6 +11,10 @@ func anyURL() -> URL {
     URL(string: "http://anyURL.com")!
 }
 
+func anyData() -> Data {
+    return Data("any data".utf8)
+}
+
 extension HTTPURLResponse {
     convenience init(statusCode: Int) {
         self.init(url: anyURL(), statusCode: statusCode, httpVersion: nil, headerFields: nil)!

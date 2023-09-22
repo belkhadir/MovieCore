@@ -21,7 +21,7 @@ public struct MovieRequest: Requestable {
     }
     
     public var path: String {
-        "/3/discover/" + movieDiscover.rawValue
+        "/3/movie/" + movieDiscover.rawValue
     }
     
     public var requestType: RequestType {

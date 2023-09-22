@@ -11,7 +11,7 @@ public enum MovieRequest: String, Requestable {
     case upcoming
     
     public var path: String {
-        "/" + rawValue
+        "/3/discover/" + rawValue
     }
     
     public var requestType: RequestType {

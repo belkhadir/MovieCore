@@ -13,5 +13,4 @@ struct MockRequest: Requestable {
     var httpBody: [String : Any] = ["key": "value"]
     var urlParameters: [String : String?] = ["param": "paramValue"]
     var requestType = RequestType.GET
-    var bearerTokonize: String = "sampleToken"
 }

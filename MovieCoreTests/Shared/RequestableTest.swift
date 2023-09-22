@@ -19,7 +19,7 @@ final class RequestableTest: XCTestCase {
     
     func testCreateURLRequest() throws {
         let request = MockRequest()
-        let urlRequest = try request.createURLRequest()
+        let urlRequest = try request.createURLRequest(bearerTokonize: "sampleToken")
         
         XCTAssertEqual(urlRequest.httpMethod, "GET")
         XCTAssertEqual(urlRequest.url?.absoluteString, "https://api.themoviedb.org/test?param=paramValue")

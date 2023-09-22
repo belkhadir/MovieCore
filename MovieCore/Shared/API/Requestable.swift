@@ -13,7 +13,6 @@ public protocol Requestable {
     var httpBody: [String: Any] { get }
     var urlParameters: [String: String?] { get }
     var requestType: RequestType { get }
-    var bearerTokonize: String { get }
 }
 
 // MARK: - Default values, some request doesn't require `params`, `urlParams` and `headers`
@@ -33,14 +32,10 @@ public extension Requestable {
     var headers: [String: String] {
         [:]
     }
-    
-    var bearerTokonize: String {
-        "Insert token"
-    }
 }
 
 public extension Requestable {
-    func createURLRequest() throws -> URLRequest {
+    func createURLRequest(bearerTokonize: String? = nil) throws -> URLRequest {
         var components = URLComponents()
         components.scheme = "https"
         components.host = host
@@ -64,7 +59,9 @@ public extension Requestable {
         }
 
         urlRequest.setValue("application/json", forHTTPHeaderField: "accept")
-        urlRequest.setValue(bearerTokonize, forHTTPHeaderField: "Authorization")
+        if let bearerTokonize {
+            urlRequest.setValue(bearerTokonize, forHTTPHeaderField: "Authorization")
+        }
         if !httpBody.isEmpty {
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: httpBody)
         }

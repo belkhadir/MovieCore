@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol Requestable {
+    var host: String { get }
     var path: String { get }
     var headers: [String: String] { get }
     var httpBody: [String: Any] { get }

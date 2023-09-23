@@ -7,7 +7,7 @@
 
 public struct MovieRequest: Requestable {
     private let movieDiscover: MovieDiscover
-    private let page: Page
+    private let page: Int
     
     public enum MovieDiscover: String {
         case popular
@@ -15,7 +15,7 @@ public struct MovieRequest: Requestable {
         case upcoming
     }
     
-    public init(movieDiscover: MovieDiscover = .popular, page: Page = Page(page: 1)) {
+    public init(movieDiscover: MovieDiscover = .popular, page: Int = 1) {
         self.movieDiscover = movieDiscover
         self.page = page
     }
@@ -29,6 +29,6 @@ public struct MovieRequest: Requestable {
     }
     
     public var urlParameters: [String : String?] {
-        ["page": "\(page.page)"]
+        ["page": "\(page)"]
     }
 }

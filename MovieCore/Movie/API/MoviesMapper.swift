@@ -9,7 +9,10 @@ import Foundation
 
 final public class MoviesMapper {
     private struct Root: Decodable {
+        private let page: Int
         private let results: [MovieAPI]
+        private let total_pages: Int
+        private let total_results: Int
         
         private struct MovieAPI: Decodable {
             let id: Int
@@ -21,7 +24,7 @@ final public class MoviesMapper {
             let vote_count: Int
         }
         
-        var movies: [Movie] {
+        private var movies: [Movie] {
             results.map {
                 Movie(
                     id:$0.id,
@@ -34,13 +37,22 @@ final public class MoviesMapper {
                 )
             }
         }
+        
+        var paginatedMovies: Paginated<Movie> {
+            Paginated(
+                items: movies,
+                page: page,
+                totalPages: total_pages,
+                totalResults: total_results
+            )
+        }
     }
     
     public enum Error: Swift.Error {
         case invalidData
     }
     
-    static public func map(json: Data, httpResponse: HTTPURLResponse) throws -> [Movie] {
+    static public func map(json: Data, httpResponse: HTTPURLResponse) throws -> Paginated<Movie> {
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -50,6 +62,6 @@ final public class MoviesMapper {
             throw Error.invalidData
         }
         
-        return try decoder.decode(Root.self, from: json).movies
+        return try decoder.decode(Root.self, from: json).paginatedMovies
     }
 }

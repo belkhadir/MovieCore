@@ -20,7 +20,7 @@ public struct ImageRequest: Requestable {
         "/t/p/w200" + "\(imagePath)"
     }
     
-    public var requestType: MovieCore.RequestType {
+    public var requestType: HTTPMethod {
         .GET
     }
 }

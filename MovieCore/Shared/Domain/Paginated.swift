@@ -31,7 +31,7 @@ public struct Paginated<Item: Equatable> {
 
 // MARK: Extesion + Paginated
 extension Paginated: Equatable {
-    public static func == (lhs: MovieCore.Paginated<Item>, rhs: MovieCore.Paginated<Item>) -> Bool {
+    public static func == (lhs: Paginated<Item>, rhs: Paginated<Item>) -> Bool {
         lhs.items == rhs.items &&
         lhs.page == rhs.page &&
         lhs.totalPages == rhs.totalPages &&

@@ -5,7 +5,7 @@
 //  Created by Belkhadir Anas on 16/9/2023.
 //
 
-public struct MovieRequest: Requestable {
+public struct MoviesRequest: Requestable {
     private let movieDiscover: MovieDiscover
     private let page: Int
     
@@ -24,7 +24,7 @@ public struct MovieRequest: Requestable {
         "/3/movie/" + movieDiscover.rawValue
     }
     
-    public var requestType: RequestType {
+    public var requestType: HTTPMethod {
         .GET
     }
     

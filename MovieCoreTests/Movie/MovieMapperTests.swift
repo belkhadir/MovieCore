@@ -49,11 +49,17 @@ final class MovieMapperTests: XCTestCase {
             voteCount: 2
         )
         
-        let json = makeItemsJSON([item1.json, item2.json])
+        let json = makeItemsJSON(
+            page: 1,
+            totalPage: 1,
+            total_results: 2,
+            items: [item1.json, item2.json]
+        )
         
         let movies = try MoviesMapper.map(json: json, httpResponse: HTTPURLResponse(statusCode: 200))
         
-        XCTAssertEqual(movies, [item1.model, item2.model])
+        let expectResult = Paginated(items: [item1.model, item2.model], page: 1, totalPages: 1, totalResults: 2)
+        XCTAssertEqual(movies, expectResult)
     }
 }
 
@@ -102,8 +108,18 @@ private extension MovieMapperTests {
         return (movie, json)
     }
     
-    func makeItemsJSON(_ items: [[String: Any]]) -> Data {
-        let json = ["results": items]
+    func makeItemsJSON(
+        page: Int,
+        totalPage: Int,
+        total_results: Int,
+        items: [[String: Any]]
+    ) -> Data {
+        let json: [String: Any] = [
+            "page": page,
+            "results": items,
+            "total_pages": totalPage,
+            "total_results": totalPage
+        ]
         return try! JSONSerialization.data(withJSONObject: json)
     }
 }

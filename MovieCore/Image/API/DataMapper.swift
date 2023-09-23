@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class ImageDataMapper {
+public final class DataMapper {
     public enum Error: Swift.Error {
         case invalidData
     }

@@ -1,33 +1,51 @@
-# 🎬 Popular Movie Showcase
+## README for MovieCore Framework
 
-The ultimate app for every digital movie enthusiast out there. Get a quick look at the best movies at your fingertips.
+---
 
-## 🎥 Feature: Displaying Movies
+### Overview
 
-### User Story:
+The `MovieCore` framework provides a convenient and structured approach to fetch movie data from an external API. The framework handles network requests, response parsing, and data mapping seamlessly, returning structured movie data to be used in applications.
+
+---
+
+### Key Components
+
+- **NetworkService**: Manages network tasks with features like canceling ongoing tasks.
+- **MoviesMapper**: Handles the decoding and mapping of movie data.
+- **MoviesRequest**: Facilitates the creation of movie-related API requests.
+
+---
+
+### Getting Started
+
+To get started, you'll need to set up the networking layer with the `NetworkService` and define the type of request you'd like to make using `MoviesRequest`.
+
+#### 1. Setting up the NetworkService
+
+```swift
+let networkService = DefaultNetworkService()
 ```
-As a digital movie enthusiast,
-I want the app to showcase the popular movies upon launch. On the main screen,
-I wish to seamlessly switch between "popular," "top-rated," and "upcoming" movie categories,
-So that I can swiftly decide on movies to add to my watchlist.
+
+#### 2. Creating a Movie Request
+Fetch popular movies on page 1:
+
+```swift
+let movieRequest = MoviesRequest(movieDiscover: .popular, page: 1)
 ```
 
-## 🍿 Acceptance Criteria (Scenarios):
-
-1. **Main Screen On Launch**
-    - When I open the app, I should immediately see a list showcasing popular movies.
-
-2. **Switching Categories**
-    - On the main screen, I should find options or tabs for "popular," "top-rated," and "upcoming" movies.
-    - When I select the "top-rated" tab, the view should refresh and show me the top-rated movies.
-    - When I select the "upcoming" tab, the view should refresh and display the upcoming movies.
-
-3. **Responsive UI**
-    - Switching between movie categories should be smooth without any lag or delay.
-
-4. **Detailed View**
-    - Clicking on a movie title or poster should take me to a detailed view where I can read more about the selected movie.
-
-5. **Adding to Watchlist**
-    - Next to each movie title or poster, there should be an option to quickly add the movie to my watchlist.
-
+#### 3. Performing the Request
+```swift
+let task = networkService.execute(request: movieRequest.toURLRequest()) { result in
+    switch result {
+    case let .success((data, _)):
+        do {
+            let movies = try MoviesMapper.map(json: data, httpResponse: response)
+            print(movies.items) // Access the fetched movies
+        } catch {
+            print("Error mapping movies: \(error)")
+        }
+    case let .failure(error):
+        print("Network error: \(error)")
+    }
+}
+```

@@ -33,12 +33,12 @@ final class RequestableTest: XCTestCase {
     func testInvalidURL() {
         struct InvalidRequest: Requestable {
             var path = "This is not a valid path"
-            var requestType = RequestType.GET
+            var requestType = HTTPMethod.GET
         }
         
         let request = InvalidRequest()
         XCTAssertThrowsError(try request.createURLRequest()) { error in
-            XCTAssertEqual(error as? NetworkError, NetworkError.invalidURL)
+            XCTAssertEqual(error as? RequestError, RequestError.invalidURL)
         }
     }
 }

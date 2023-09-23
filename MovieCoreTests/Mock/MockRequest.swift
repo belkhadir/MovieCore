@@ -12,5 +12,5 @@ struct MockRequest: Requestable {
     var headers: [String : String] = ["headerField": "headerValue"]
     var httpBody: [String : Any] = ["key": "value"]
     var urlParameters: [String : String?] = ["param": "paramValue"]
-    var requestType = RequestType.GET
+    var requestType = HTTPMethod.GET
 }

@@ -7,10 +7,10 @@
 
 import Foundation
 
-public final class NetworkServiceProvider {
+public final class DefaultNetworkService {
     private let session: URLSession
     
-    private struct URLSessionTaskWrapper: NetworkServiceTask {
+    private struct URLSessionTaskAdapter: CancelableTask {
         let wrapped: URLSessionTask
 
         func cancel() {
@@ -18,16 +18,16 @@ public final class NetworkServiceProvider {
         }
     }
     
-    private struct UnexpectedValuesRepresentation: Error {}
+    private struct UnexpectedResponseError: Error {}
     
     public init(session: URLSession = .shared) {
         self.session = session
     }
 }
 
-// MARK: - NetworkServiceProviding
-extension NetworkServiceProvider: NetworkServiceProviding {
-    public func perform(request: URLRequest, completion: @escaping (NetworkServiceProviding.Result) -> Void) -> NetworkServiceTask {
+// MARK: - NetworkService
+extension DefaultNetworkService: NetworkService {
+    public func perform(request: URLRequest, completion: @escaping (NetworkService.Result) -> Void) -> CancelableTask {
         let task = session.dataTask(with: request) { data, response, error in
             completion(Result {
                 if let error = error {
@@ -35,11 +35,11 @@ extension NetworkServiceProvider: NetworkServiceProviding {
                 } else if let data = data, let response = response as? HTTPURLResponse {
                     return (data, response)
                 } else {
-                    throw UnexpectedValuesRepresentation()
+                    throw UnexpectedResponseError()
                 }
             })
         }
         task.resume()
-        return URLSessionTaskWrapper(wrapped: task)
+        return URLSessionTaskAdapter(wrapped: task)
     }
 }

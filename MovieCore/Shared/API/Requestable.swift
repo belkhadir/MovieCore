@@ -8,11 +8,12 @@
 import Foundation
 
 public protocol Requestable {
+    var host: String { get }
     var path: String { get }
     var headers: [String: String] { get }
     var httpBody: [String: Any] { get }
     var urlParameters: [String: String?] { get }
-    var requestType: RequestType { get }
+    var requestType: HTTPMethod { get }
 }
 
 // MARK: - Default values, some request doesn't require `params`, `urlParams` and `headers`
@@ -48,7 +49,7 @@ public extension Requestable {
         }
         
         guard let url = components.url else {
-            throw NetworkError.invalidURL
+            throw RequestError.invalidURL
         }
 
         var urlRequest = URLRequest(url: url)

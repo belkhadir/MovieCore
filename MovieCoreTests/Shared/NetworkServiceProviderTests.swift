@@ -77,8 +77,8 @@ final class NetworkServiceProviderTests: XCTestCase {
 
 // MARK: - Helpers
 private extension NetworkServiceProviderTests {
-    func makeSUT(file: StaticString = #file, line: UInt = #line) -> NetworkServiceProviding {
-        let sut = NetworkServiceProvider()
+    func makeSUT(file: StaticString = #file, line: UInt = #line) -> NetworkService {
+        let sut = DefaultNetworkService()
         trackForMemoryLeaks(sut, file: file, line: line )
         return sut
     }
@@ -113,12 +113,12 @@ private extension NetworkServiceProviderTests {
         }
     }
     
-    func resultFor(data: Data?, response: URLResponse?, error: Error?, file: StaticString = #file, line: UInt = #line) ->  NetworkServiceProviding.Result {
+    func resultFor(data: Data?, response: URLResponse?, error: Error?, file: StaticString = #file, line: UInt = #line) ->  NetworkService.Result {
         URLProtocolSub.stub(data: data, response: response, error: error)
         let sut = makeSUT(file: file, line: line )
         let exp = expectation(description: "Wait for completion")
         
-        var receivedResult: NetworkServiceProviding.Result!
+        var receivedResult: NetworkService.Result!
         sut.perform(request: anyRequest()) { result in
             receivedResult = result
             exp.fulfill()

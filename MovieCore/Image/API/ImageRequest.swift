@@ -12,11 +12,15 @@ public struct ImageRequest: Requestable {
         self.imagePath = imagePath
     }
     
-    public var path: String {
-        "/t/p/w500\(imagePath)"
+    public var host: String {
+        "image.tmdb.org"
     }
     
-    public var requestType: RequestType {
+    public var path: String {
+        "/t/p/w200" + "\(imagePath)"
+    }
+    
+    public var requestType: HTTPMethod {
         .GET
     }
 }

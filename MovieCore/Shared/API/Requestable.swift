@@ -39,7 +39,7 @@ public extension Requestable {
     func createURLRequest(bearerTokonize: String? = nil) throws -> URLRequest {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = self.host // Accessing host directly
+        components.host = host
         components.path = path
         
         if !urlParameters.isEmpty {
